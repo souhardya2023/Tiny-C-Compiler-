@@ -1,8 +1,8 @@
-all: basiccodegen.l basiccodegen.y main.c
-	yacc -d basiccodegen.y
-	lex basiccodegen.l
-	gcc main.c
+all: src/basiccodegen.l src/basiccodegen.y src/main.c
+	yacc -d src/basiccodegen.y
+	lex src/basiccodegen.l
+	gcc src/main.c -o compiler -I.
 run: all
-	./a.out decl.txt
+	./compiler tests/test1.txt
 clean:
-	rm -f a.out lex.yy.c y.tab.c y.tab.h
+	rm -f compiler lex.yy.c y.tab.c y.tab.h
