@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lex.yy.c"
-#include "y.tab.c"
+#include "../lex.yy.c"
+#include "../y.tab.c"
 //Declare a global variable count for three address instructions
 int addrcount = 0;
 
