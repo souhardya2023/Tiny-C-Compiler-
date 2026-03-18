@@ -288,13 +288,6 @@ diff output.txt tests/expected.txt
 
 ---
 
-## 👨‍💻 Authors
-
-* Souhardya Dandapat
-* Utsa Ghosh
-
----
-
 ## 📜 License
 
 For academic and educational use.
