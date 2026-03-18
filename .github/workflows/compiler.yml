@@ -19,9 +19,9 @@ jobs:
 
     - name: Build compiler
       run: |
-        flex src/basiccodegen.l
-        bison -d src/basiccodegen.y
-        gcc -o compiler src/main.c lex.yy.c y.tab.c -w
+        yacc -d src/basiccodegen.y
+        lex src/basiccodegen.l
+        gcc src/main.c -o compiler
 
     - name: Run test
       run: |
