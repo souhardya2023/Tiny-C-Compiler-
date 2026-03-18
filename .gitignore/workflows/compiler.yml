@@ -1,0 +1,31 @@
+name: Tiny C Compiler CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y flex bison gcc
+
+    - name: Generate lexer and parser
+      run: |
+        flex src/basiccodegen.l
+        bison -d src/basiccodegen.y
+
+    - name: Compile compiler
+      run: |
+        gcc -o compiler main.c lex.yy.c y.tab.c -w
+
+    - name: Run test program
+      run: |
+        ./compiler src/decl.txt

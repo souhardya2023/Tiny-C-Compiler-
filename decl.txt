@@ -1,0 +1,42 @@
+long a, b;
+float c;
+long Catalan[50];
+int i, j, n;
+struct matrix {
+    int row, col;
+    double A[100][100];
+} M;
+a = 10;
+b = a;
+c = a + b;
+if (c > a) { a = a + 5; b = b + 5; }
+if (c > -100 && c < 100 || a != b) { a = a + 5; b = b + 5; } else { a = a - 5; b = b - 5; }
+while (c > -100 && c < 100 || a != b && a != c) { a = a + 5; b = b - 5; c = a - b; }
+n = 25;
+Catalan[0] = 1;
+i = 1;
+while (i<=n) {
+    Catalan[i] = 0;
+    j = 0;
+    while (j < i) { Catalan[i] = Catalan[i] + Catalan[j] * Catalan[i-j-1]; j = j + 1; }
+    i = i + 1;
+}
+M.row = 10; M.col = 20; i = 0;
+while (i < M.row) {
+    j = 0;
+    while (j < M.col) {
+        if (i == j) {
+            M.A[i][j] = 0;
+        } 
+        else {
+            if (i > j && i<j+3) {
+                M.A[i][j] = i - j;
+            } 
+            else {
+                if (i<j && i>j-3) { M.A[i][j] = j - i; } else { M.A[i][j] = -1; }
+            }
+        }
+        j = j + 1;
+    }
+    i = i + 1;
+}
