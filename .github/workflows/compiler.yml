@@ -21,7 +21,7 @@ jobs:
       run: |
         yacc -d src/basiccodegen.y
         lex src/basiccodegen.l
-        gcc src/main.c -o compiler
+        gcc src/main.c -o compiler -I.
 
     - name: Run test
       run: |
