@@ -5,27 +5,24 @@ on:
   pull_request:
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    - name: Install dependencies
+    - name: Install tools
       run: |
         sudo apt-get update
         sudo apt-get install -y flex bison gcc
 
-    - name: Generate lexer and parser
+    - name: Build compiler
       run: |
         flex src/basiccodegen.l
         bison -d src/basiccodegen.y
+        gcc -o compiler src/main.c lex.yy.c y.tab.c -w
 
-    - name: Compile compiler
+    - name: Run test
       run: |
-        gcc -o compiler main.c lex.yy.c y.tab.c -w
-
-    - name: Run test program
-      run: |
-        ./compiler src/decl.txt
+        ./compiler tests/test1.txt
